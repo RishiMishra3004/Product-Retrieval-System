@@ -21,7 +21,7 @@ query = st.text_input("Search for products:")
 # Dropdown menu for model selection
 model_selection = st.selectbox(
     "Select the model to use for search",
-    ["Heuristic", "TF-IDF", "Word2Vec", "SBERT", "BERT"]
+    ["Heuristic", "TF-IDF", "Word2Vec", "SBERT"]
 )
 
 def clean_text(text):
@@ -30,36 +30,56 @@ def clean_text(text):
     text = text.lower()  # Convert to lowercase
     return text
 
-# query = "tshirts"
-query = translate_to_english(query)
+# Initialize results dictionary
+results = {}
 
-if query:
-    query = clean_text(query)
-    # Heuristic search
-    st.subheader("Heuristic Search Results")
-    heuristic_results = heuristic_search(query)
-    print(heuristic_results)
-    st.write(heuristic_results)
+# Create two columns for buttons
+col1, col2 = st.columns(2)
 
-    # Machine Learning based search
-    st.subheader("ML Model-Based Search Results")
+# Place buttons in columns
+with col1:
+    search_button = st.button("SEARCH")
+with col2:
+    clear_button = st.button("CLEAR")
+    
+# Handle button actions
+if search_button:
+    if query:
+        query = clean_text(translate_to_english(query))
+        
+        # Heuristic search
+        heuristic_results = heuristic_search(query)
+        results["Heuristic"] = heuristic_results
+        
+        # TF-IDF
+        tfidf_results = search_products_tfidf(query, data)
+        results["TF-IDF"] = tfidf_results
 
-    # TF-IDF
-    st.subheader("TF-IDF Search Results")
-    tfidf_results = search_products_tfidf(query, data)
-    st.write(tfidf_results)
+        # Word2Vec
+        word2vec_results = search_products_word2vec(query, data)
+        results["Word2Vec"] = word2vec_results
 
-    # Word2Vec
-    st.subheader("Word2Vec Search Results")
-    word2vec_results = search_products_word2vec(query, data)
-    st.write(word2vec_results)
+        # SBERT
+        sbert_results = search_products_sbert(query, data)
+        results["SBERT"] = sbert_results
 
-    # BERT
-    st.subheader("BERT Search Results")
-    sbert_results = search_products_sbert(query, data)
-    st.write(sbert_results)
-
-    # # BERT
-    # st.subheader("BERT Search Results")
-    # bert_results = search_products_bert(query)
-    # st.write(bert_results)
+        # BERT (commented out)
+        # bert_results = search_products_bert(query)
+        # results["BERT"] = bert_results
+        
+        # Display selected model results at the top
+        if model_selection in results:
+            st.subheader(f"{model_selection} RESULTS")
+            st.write(results[model_selection])
+        
+        # Display other models' results below
+        for model in ["Heuristic", "TF-IDF", "Word2Vec", "SBERT", "BERT"]:
+            if model != model_selection and model in results:
+                if(model != "Heuristic"):
+                    st.subheader("ML-BASED MODEL")
+                st.subheader(f"{model} Search Results")
+                st.write(results[model])
+elif clear_button:
+    query = ""
+    results = {}
+    st.write("Results cleared.")

@@ -78,7 +78,7 @@ def search_products(query, embeddings, top_n=10):
     top_indices = similarities.argsort()[-top_n:][::-1]
 
     # Return the top N most similar products
-    return data.iloc[top_indices][['product_name', 'retail_price', 'overall_rating', 'product_url']].reset_index(drop=True) 
+    return data.iloc[top_indices][['product_name', 'product_url', 'retail_price', 'discounted_price']].reset_index(drop=True) 
 
 
 def search_products_sbert(query, sbert_embeddings):
