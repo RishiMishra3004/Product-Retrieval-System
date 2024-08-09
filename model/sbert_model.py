@@ -6,7 +6,7 @@ import re
 import os
 
 # Define the path for the embeddings file
-sbert_embeddings_path = "Embeddings/SBERT_Embeddings/sbert_embeddings.pt"
+sbert_embeddings_path = "Embeddings/Sbert_Embeddings/sbert_embeddings.pt"
 
 # Load the dataset
 data = pd.read_csv("data/flipkart_com-ecommerce_sample.csv")
@@ -53,7 +53,7 @@ def load_sbert_embeddings(embeddings_path):
     Returns:
     - Tensor containing the SBERT embeddings.
     """
-    embeddings = torch.load(embeddings_path)
+    embeddings = torch.load(embeddings_path, map_location=torch.device(device))
     return embeddings.to(device)  # Move embeddings to the same device as the model
 
 def search_products(query, embeddings, top_n=10):

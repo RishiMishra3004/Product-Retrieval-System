@@ -5,6 +5,9 @@ from nltk.tokenize import word_tokenize
 from sklearn.metrics.pairwise import cosine_similarity
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
 
 # Load the Word2Vec model
 word2vec_model = Word2Vec.load("Embeddings/Word2Vec_Embeddings/word2vec_model.model")
