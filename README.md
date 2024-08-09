@@ -25,3 +25,11 @@ A system made using various techniques for effectively searching products from a
 4. Open terminal and run following command
 
    `streamlit run app.py`
+
+
+## SOME INFO ABOUT VARIOUS FILES
+
+* app.py is the main script file in which streamlit app is built and various other features are imported
+* generate_embeddings.py script file is for generate various embeddings, currently they are already generated and uploaded here
+* EMBEDDINGS folder contains various embeddings script files and embeddings files
+* notebook sections contains some notebooks including EDA file
