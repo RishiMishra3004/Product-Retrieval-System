@@ -7,6 +7,7 @@ from model.tfidf_model import search_products_tfidf
 from model.word2vec_model import search_products_word2vec
 from model.sbert_model import search_products_sbert
 # from model.bert_model import search_products_bert
+from multilingual_query import translate_to_english
 
 # Load the data
 data = pd.read_csv("data/flipkart_com-ecommerce_sample.csv")  # Adjust the path as necessary
@@ -30,6 +31,8 @@ def clean_text(text):
     return text
 
 # query = "tshirts"
+query = translate_to_english(query)
+
 if query:
     query = clean_text(query)
     # Heuristic search
