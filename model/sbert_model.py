@@ -53,7 +53,7 @@ def load_sbert_embeddings(embeddings_path):
     Returns:
     - Tensor containing the SBERT embeddings.
     """
-    embeddings = torch.load(embeddings_path)
+    embeddings = torch.load(embeddings_path, map_location=torch.device(device))
     return embeddings.to(device)  # Move embeddings to the same device as the model
 
 def search_products(query, embeddings, top_n=10):
