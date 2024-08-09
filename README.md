@@ -2,7 +2,7 @@
 
 A system made using various techniques for effectively searching products from already provided data
 
-**STREAMLIT APP LINK : ** [link](https://appuct-retrieval-system-gzp5xbbzwqb67pqdcmbbaf.streamlit.app/)
+**STREAMLIT APP LINK :** [link](https://appuct-retrieval-system-gzp5xbbzwqb67pqdcmbbaf.streamlit.app/)
 
 ## Steps to Reproduce 
 
