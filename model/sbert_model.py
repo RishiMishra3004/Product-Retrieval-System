@@ -6,7 +6,7 @@ import re
 import os
 
 # Define the path for the embeddings file
-sbert_embeddings_path = "Embeddings/SBERT_Embeddings/sbert_embeddings.pt"
+sbert_embeddings_path = "Embeddings/Sbert_Embeddings/sbert_embeddings.pt"
 
 # Load the dataset
 data = pd.read_csv("data/flipkart_com-ecommerce_sample.csv")
