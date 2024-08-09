@@ -31,5 +31,6 @@ A system made using various techniques for effectively searching products from a
 
 * app.py is the main script file in which streamlit app is built and various other features are imported
 * generate_embeddings.py script file is for generate various embeddings, currently they are already generated and uploaded here
+* multilingual_query.py contains script to handle query in other standard languages around the globe
 * EMBEDDINGS folder contains various embeddings script files and embeddings files
 * notebook sections contains some notebooks including EDA file
